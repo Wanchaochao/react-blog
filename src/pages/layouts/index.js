@@ -5,9 +5,6 @@ import Link from 'umi/link'
 import moment from 'moment'
 import 'moment/locale/zh-cn'
 import style from './style.less'
-//
-// const {Header, Sider, Content, Footer} = Layout
-// const {Item, SubMenu} = Menu
 
 
 class BasicLayout extends Component {
@@ -15,7 +12,7 @@ class BasicLayout extends Component {
   state = {
     menuList: [
       { name: '首页', link: '/' },
-      { name: '分类', link: '/category' },
+      { name: '分类', link: '/categories' },
       { name: '关于', link: '/about' },
     ],
     friendsBlogs: [
@@ -34,8 +31,8 @@ class BasicLayout extends Component {
 
   }
 
-  onPanelChange() {
-
+  static onPanelChange() {
+    return console.log(1)
   }
 
   onSelect() {
@@ -45,8 +42,8 @@ class BasicLayout extends Component {
   render() {
     moment.locale('zh-cn');
     // moment({ hour:15, minute:10 })
-    const startTime = moment.momentToFormat
-    console.log(startTime)
+    // const startTime = moment()
+
     // startTime.startOf('hour').fromNow()
     return (
       <div id="app">
@@ -111,10 +108,7 @@ class BasicLayout extends Component {
           </Col>
           <Col span={7}>
             <div style={{ width: 300, border: '1px solid #d9d9d9', borderRadius: 4 }}>
-              <Calendar
-                fullscreen={false}
-                value={startTime}
-              />
+              <Calendar fullscreen={false} onPanelChange={BasicLayout.onPanelChange} />
             </div>
           </Col>
         </Row>
