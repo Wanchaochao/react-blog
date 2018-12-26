@@ -54,7 +54,7 @@ export const request = (url, options) => {
     let response = yield fetch(url, newOptions)
     checkStatus(response)
     let ret = yield response.json()
-    if (ret.code === 200) {
+    if (ret.retcode === 0) {
       return ret.data
     } else {
       throw Err.instance(ret)
@@ -63,16 +63,14 @@ export const request = (url, options) => {
 }
 
 export const createApi = (url, body, method) => {
-  console.log('createApi')
   let headers = {
     'Access-Token': getAccessToken(),
   }
 
   let param = {
     body,
-    method,
+    method: method ? method : "GET",
     headers,
   }
-  console.log(param)
   return request(url, param)
 }

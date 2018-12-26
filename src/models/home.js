@@ -1,7 +1,7 @@
-import { articleListApi } from '../service'
+import { getArticleListApi } from '../service'
 
 export default {
-  namespace: 'article',
+  namespace: 'home',
   state: {
     list: [],
     page: {
@@ -12,7 +12,7 @@ export default {
   },
   effects: {
     * articleListApi ({payload},{put,set,select}) {
-        const ret = yield articleListApi(payload)
+        const ret = yield getArticleListApi(payload)
         yield put({type: 'articleList', payload: ret})
     }
   },
