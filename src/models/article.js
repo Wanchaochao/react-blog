@@ -1,4 +1,4 @@
-import { getArticleApi, evaluateArticleApi } from '../service';
+import { getArticleApi, evaluateArticleApi,createCommentApi } from '../service';
 
 export default {
   namespace: 'article',
@@ -17,6 +17,11 @@ export default {
       let ret = yield evaluateArticleApi({ id: payload.id, type: payload.type, index: payload.index });
       yield put({ type: 'updateEvaluate', payload: ret });
     },
+    * commentApi({ payload }, { put }) {
+      let ret = yield createCommentApi({ article_id: payload.article_id});
+      yield put({ type: 'updateComments', payload: ret });
+    },
+
   },
   reducers: {
     article(state, { payload }) {
@@ -32,5 +37,11 @@ export default {
         ...state,
       };
     },
+    updateComments(state, {payload}) {
+      state.comments.unshift(payload)
+      return {
+        ...state
+      }
+    }
   },
 };

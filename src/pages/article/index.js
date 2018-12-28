@@ -13,7 +13,7 @@ import moment from 'moment';
 
 const TextArea = Input.TextArea;
 
-const Editor = ({ onChange, onSubmit, submitting, value }) => (
+const Editor = ({ onChange, onSubmit, loading, value }) => (
   <div>
     <Form.Item>
       <TextArea rows={4} onChange={onChange} value={value}/>
@@ -21,7 +21,7 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
     <Form.Item className="pull-right">
       <Button
         htmlType="submit"
-        loading={submitting}
+        loading={loading}
         onClick={onSubmit}
         type="primary"
       >
@@ -31,7 +31,7 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
   </div>
 );
 
-const CommentList = ({ comments, loading }) => (
+const CommentList = ({ comments, loading, evaluate }) => (
   <List
     dataSource={comments}
     header={`${comments.length}条回复`}
@@ -51,7 +51,7 @@ const CommentList = ({ comments, loading }) => (
                   <Icon
                     type="like"
                     theme="outlined"
-                    onClick={() => this.evaluate(item.id, index, 1)}
+                    onClick={() => evaluate(item.id, index, 1)}
                   />
                 </Tooltip>
                 <span style={{ paddingLeft: 8, cursor: 'auto' }}>
@@ -63,7 +63,7 @@ const CommentList = ({ comments, loading }) => (
                   <Icon
                     type="dislike"
                     theme="outlined"
-                    onClick={() => this.evaluate(item.id, index, 0)}
+                    onClick={() => evaluate(item.id, index, 0)}
                   />
                 </Tooltip>
                 <span style={{ paddingLeft: 8, cursor: 'auto' }}>
@@ -146,12 +146,17 @@ class Article extends Component {
   }
 
   handleChange = (e) => {
-    console.log(111)
     this.setState({ commentContent: e.target.value });
   };
   handleSubmit = () => {
-
-    console.log('handleSubmit');
+    let me = this
+    sync(function *() {
+      yield me.props.dispatch({
+        type: "article/commentApi",
+        payload: {article_id:me.props.location.query.id}
+      })
+    })
+    this.setState({commentContent: ''})
   };
 
   evaluate = (id, index, type) => {
@@ -170,7 +175,7 @@ class Article extends Component {
 
   render() {
     const { loading } = this.props;
-    const { comments,article,content,prev,next } = this.props.article;
+    const { comments,content,prev,next } = this.props.article;
     const { commentContent, submitting } = this.state;
     return (
       <div>
@@ -224,11 +229,11 @@ class Article extends Component {
                     onChange={this.handleChange}
                     value={commentContent}
                     onSubmit={this.handleSubmit}
-                    submitting={submitting}
+                    loading={loading}
                   />
                 )}
               />
-              {comments && <CommentList comments={comments} loading={loading}/>}
+              {comments && <CommentList comments={comments} evaluate={this.evaluate} loading={loading}/>}
             </div>
           </Col>
         </Row>
