@@ -1,6 +1,7 @@
 import fetch from 'dva/fetch'
 import { Err } from './error'
 import { getAccessToken } from './auth'
+import { message } from 'antd'
 import co from 'co'
 
 const codeMessage = {
@@ -57,7 +58,9 @@ export const request = (url, options) => {
     if (ret.retcode === 0) {
       return ret.data
     } else {
-      throw Err.instance(ret)
+      let error =  Err.instance(ret)
+      message.error(error.getMsg())
+      throw error
     }
   })
 }

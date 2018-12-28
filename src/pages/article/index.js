@@ -1,71 +1,239 @@
 import React, { Component } from 'react';
-import { Row, Col, Icon } from 'antd';
+import { Row, Col, Icon, Button, Comment, Tooltip, Input, Form, Avatar, List } from 'antd';
 import marked from 'marked';
 import hljs from 'highlight.js';
 import style from './style.less';
-import 'highlight.js/styles/github.css';
 import { connect } from 'dva';
 import { sync } from '../../util';
+import Link from 'umi/link';
+import 'highlight.js/styles/github.css';
+import { get } from '../../util';
+import '../../global.less';
+import moment from 'moment';
+
+const TextArea = Input.TextArea;
+
+const Editor = ({ onChange, onSubmit, submitting, value }) => (
+  <div>
+    <Form.Item>
+      <TextArea rows={4} onChange={onChange} value={value}/>
+    </Form.Item>
+    <Form.Item className="pull-right">
+      <Button
+        htmlType="submit"
+        loading={submitting}
+        onClick={onSubmit}
+        type="primary"
+      >
+        提交
+      </Button>
+    </Form.Item>
+  </div>
+);
+
+const CommentList = ({ comments, loading }) => (
+  <List
+    dataSource={comments}
+    header={`${comments.length}条回复`}
+    itemLayout="horizontal"
+    loading={loading}
+    renderItem={(item, index) => (
+      <Comment
+        key={item.id}
+        content={item.content}
+        author={item.nickname}
+        datetime={<Tooltip title={item.created_at}>
+          <span>{moment(item.created_at, 'YYYY-MM-DD HH:mm:ss').fromNow()}</span>
+        </Tooltip>}
+        actions={[
+          <span>
+                <Tooltip title="Like">
+                  <Icon
+                    type="like"
+                    theme="outlined"
+                    onClick={() => this.evaluate(item.id, index, 1)}
+                  />
+                </Tooltip>
+                <span style={{ paddingLeft: 8, cursor: 'auto' }}>
+                  {item.praise_num}
+                </span>
+              </span>,
+          <span>
+                <Tooltip title="Dislike">
+                  <Icon
+                    type="dislike"
+                    theme="outlined"
+                    onClick={() => this.evaluate(item.id, index, 0)}
+                  />
+                </Tooltip>
+                <span style={{ paddingLeft: 8, cursor: 'auto' }}>
+                  {item.against_num}
+                </span>
+              </span>,
+          <span onClick={() => this.reply(item.id)}>回复</span>,
+        ]}
+        avatar={(
+          <Avatar
+            src={item.avatar}
+            alt={item.nickname}
+          />
+        )}
+      >
+      </Comment>
+    )}
+  />
+);
 
 @connect(({ article, loading }) => ({
   article,
-  loading: loading.models.category,
+  loading: loading.models.article,
 }))
+
 
 class Article extends Component {
 
   state = {
-    articleContent: '## 1. 检测用户是否认证你可以通过验证用户是否为空来检测其是否认证：\n' +
-      '\n' +
-      '```php\n' +
-      '@if(auth()->user())\n' +
-      '    // 用户已认证\n' +
-      '@endif\n' +
-      '```',
+    commentContent: '',
+    replyContent: '', // 要回复评论的内容
+    replyId: 0, // 要回复评论的id
+    submitting: false,
   };
 
   load = (id) => {
-    console.log('dispatch')
     return this.props.dispatch({
       type: 'article/articleApi',
       payload: { id },
     });
   };
 
+
+  componentDidCatch() {
+    marked.setOptions({
+      renderer: new marked.Renderer(),
+      gfm: true,
+      tables: true,
+      breaks: false,
+      pedantic: false,
+      sanitize: false,
+      smartLists: true,
+      smartypants: false,
+      highlight: function(code) {
+        hljs.initHighlightingOnLoad();
+        return hljs.highlightAuto(code).value;
+      },
+    });
+  }
+
   componentDidMount() {
+    marked.setOptions({
+      renderer: new marked.Renderer(),
+      gfm: true,
+      tables: true,
+      breaks: false,
+      pedantic: false,
+      sanitize: false,
+      smartLists: true,
+      smartypants: false,
+      highlight: function(code) {
+        hljs.initHighlightingOnLoad();
+        return hljs.highlightAuto(code).value;
+      },
+    });
     let self = this;
     sync(function* () {
       yield self.load(self.props.location.query.id);
     });
-
-
-    hljs.initHighlightingOnLoad();
-    let myMarked = marked.setOptions({
-      highlight(code) {
-        return hljs.highlightAuto(code).value;
-      },
-    });
-    document.getElementById('content').innerHTML = myMarked(this.state.articleContent);
   }
 
+  handleChange = (e) => {
+    console.log(111)
+    this.setState({ commentContent: e.target.value });
+  };
+  handleSubmit = () => {
+
+    console.log('handleSubmit');
+  };
+
+  evaluate = (id, index, type) => {
+    let me = this;
+    sync(function* () {
+      yield me.props.dispatch({
+        type: 'article/evaluateApi',
+        payload: { id, index, type },
+      });
+    });
+  };
+
+  reply = () => {
+    alert('reply');
+  };
+
   render() {
-    const { article } = this.props.article;
-    console.log(article);
-
+    const { loading } = this.props;
+    const { comments,article,content,prev,next } = this.props.article;
+    const { commentContent, submitting } = this.state;
     return (
+      <div>
+        <Row className={style.articleContainer}>
+          <Col span={24}>
+            <h2 className={style.articleTitle}>title</h2>
+            <p className={style.articleDescription}>
+              <Icon type="home" theme="twoTone"/> Little Bug 发表于 <Icon theme="twoTone" type="schedule"/> 2018-12-17
+              16:54:47 |
+              分类 <Icon theme="twoTone" type="database"/> Javascript
+            </p>
+            <div className={style.articleContent} id="content"
+                 dangerouslySetInnerHTML={{ __html: marked(content) }}>
+            </div>
+            <Row style={{ margin: '15px 0 0 0' }}>
+              <Col span={5}>
+                {get(prev, 'id', 0)
+                  ? <Link to={'article?id=' + prev.id}>
+                    <Button type="default" htmlType="button">
+                      <Icon type="left"/>{prev.title}
+                    </Button>
+                  </Link>
+                  : ''
+                }
+              </Col>
+              <Col span={5} offset={14} style={{ textAlign: 'right' }}>
+                {get(next, 'id', 0)
+                  ? <Link to={'article?id=' + prev.id}>
+                    <Button type="default" htmlType="button">
+                      {next.title}<Icon type="right"/>
+                    </Button>
+                  </Link>
+                  : ''
+                }
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+        <Row className={style.articleContainer} style={{ margin: '15px 0 15px 0' }}>
+          <Col>
+            <div>
+              <Comment
+                avatar={(
+                  <Avatar
+                    src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                    alt="Han Solo"
+                  />
+                )}
+                content={(
+                  <Editor
+                    onChange={this.handleChange}
+                    value={commentContent}
+                    onSubmit={this.handleSubmit}
+                    submitting={submitting}
+                  />
+                )}
+              />
+              {comments && <CommentList comments={comments} loading={loading}/>}
+            </div>
+          </Col>
+        </Row>
+      </div>
 
-      <Row className={style.articleContainer}>
-        <Col span={24}>
-          <h2 className={style.articleTitle}>title</h2>
-          <p className={style.articleDescription}>
-            <Icon type="home" theme="twoTone"/> Little Bug 发表于 <Icon theme="twoTone" type="schedule"/> 2018-12-17
-            16:54:47 |
-            分类 <Icon theme="twoTone" type="database"/> Javascript
-          </p>
-          <div className={style.articleContent} id="content">
-          </div>
-        </Col>
-      </Row>
     );
   }
 }

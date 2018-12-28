@@ -19,6 +19,6 @@ export class Err {
       return this.data.message
     }
 
-    return get(this.data,"msg","未知错误"+JSON.stringify(this.data))
+    return '[' + get(this.data,'code','未知错误码') +  ']' + get(this.data,"msg","未知错误"+JSON.stringify(this.data))
   }
 }

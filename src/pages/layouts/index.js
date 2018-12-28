@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-no-target-blank */
-import { Component } from 'react'
-import { Card, List, Row, Col, Calendar } from 'antd'
-import Link from 'umi/link'
-import moment from 'moment'
-import 'moment/locale/zh-cn'
-import style from './style.less'
+import { Component } from 'react';
+import { Card, List, Row, Col, Calendar, Layout } from 'antd';
+import Link from 'umi/link';
+import moment from 'moment';
+import 'moment/locale/zh-cn';
+import style from './style.less';
 
 
 class BasicLayout extends Component {
@@ -32,7 +32,7 @@ class BasicLayout extends Component {
   }
 
   static onPanelChange() {
-    return console.log(1)
+    return console.log(1);
   }
 
   onSelect() {
@@ -48,70 +48,72 @@ class BasicLayout extends Component {
     return (
       <div id="app">
         {/*顶部margin*/}
-        <div className={style.topMargin}/>
-        <Row type="flex" justify="space-around" gutter={{xs: 8, sm: 16, md: 24}}>
-          <Col span={3} offset={4} className="baseMargin">
-            <Row>
-              <Col span={24}>
-                <Card
-                  title={<div>
-                    <a href="https://github.com/wanchaochao" target="_blank">Little Bug</a>
-                    <p className="logoText">努力让编程成为一门艺术</p>
-                  </div>}
-                  className={style.blogTitleCard}
-                >
-                  <List
-                    dataSource={this.state.menuList}
-                    renderItem={item => (<List.Item>
-                      <Link className="center" to={item.link}>{item.name}</Link>
-                    </List.Item>)}
+        <Layout style={{ overflow: 'hidden' }}>
+          <div className={style.topMargin}/>
+          <Row type="flex" justify="space-around" gutter={{ xs: 8, sm: 16, md: 24 }}>
+            <Col span={3} offset={4} className="baseMargin">
+              <Row>
+                <Col span={24}>
+                  <Card
+                    title={<div>
+                      <a href="https://github.com/wanchaochao" target="_blank">Little Bug</a>
+                      <p className={style.logoText}>努力让编程成为一门艺术</p>
+                    </div>}
+                    className={style.blogTitleCard}
                   >
-                  </List>
-                </Card>
-              </Col>
+                    <List
+                      dataSource={this.state.menuList}
+                      renderItem={item => (<List.Item>
+                        <Link className="center" to={item.link}>{item.name}</Link>
+                      </List.Item>)}
+                    >
+                    </List>
+                  </Card>
+                </Col>
 
-              <Col span={24}>
-                <Card
-                  className={style.blogBottomTitleCard}
-                  title={<Row>
-                    <Link to="/articleList">
-                      <Col span={12} className={style.cardRightBorder}>
-                        <p>日志</p>
-                        <p>8</p>
-                      </Col>
-                    </Link>
-                    <Col span={12}>
-                      <Link to="/categories">
-                        <p>分类</p>
-                        <p>10</p>
+                <Col span={24}>
+                  <Card
+                    className={style.blogBottomTitleCard}
+                    title={<Row>
+                      <Link to="/articleList">
+                        <Col span={12} className={style.cardRightBorder}>
+                          <p>日志</p>
+                          <p>8</p>
+                        </Col>
                       </Link>
-                    </Col>
-                  </Row>}
-                >
-                  <div className="center">
-                    <p>友情链接</p>
-                    {this.state.friendsBlogs.map(item => {
-                      return (<span className={style.friendLink} key={item.name}>
+                      <Col span={12}>
+                        <Link to="/categories">
+                          <p>分类</p>
+                          <p>10</p>
+                        </Link>
+                      </Col>
+                    </Row>}
+                  >
+                    <div className="center">
+                      <p>友情链接</p>
+                      {this.state.friendsBlogs.map(item => {
+                        return (<span className={style.friendLink} key={item.name}>
                         <Link to={item.link}>
                           {item.name}
                         </Link>
-                      </span>)
-                    })}
-                  </div>
-                </Card>
-              </Col>
-            </Row>
+                      </span>);
+                      })}
+                    </div>
+                  </Card>
+                </Col>
+              </Row>
 
-          </Col>
-          <Col span={10}>
-            {this.props.children}
-          </Col>
-          <Col span={7}>
-            <div style={{ width: 300, border: '1px solid #d9d9d9', borderRadius: 4 }}>
-              <Calendar fullscreen={false} onPanelChange={BasicLayout.onPanelChange} />
-            </div>
-          </Col>
-        </Row>
+            </Col>
+            <Col span={10}>
+              {this.props.children}
+            </Col>
+            <Col span={7}>
+              <div style={{ width: 300, border: '1px solid #d9d9d9', borderRadius: 4, backgroundColor: '#fff' }}>
+                <Calendar fullscreen={false} onPanelChange={BasicLayout.onPanelChange}/>
+              </div>
+            </Col>
+          </Row>
+        </Layout>
       </div>
     );
   }

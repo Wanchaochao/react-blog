@@ -33,13 +33,12 @@ class Categories extends Component {
       <Row>
         <Col span={24}>
         {category.list.map((item,index) => {
-          return (<div className={(index + 2) % 3 === 0 ? style.midItemContainer : style.itemContainer}>
+          return (<div className={(index + 2) % 3 === 0 ? style.midItemContainer : style.itemContainer} key={item.id}>
             <Card
               cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"/>}
               actions={[<Link to={"article?id=" + item.id }>
                 <span>共{item.articles.length}篇文章 </span> <Icon type="read" style={{ color: 'green' }} className={globalLess['pull-right']}/>
               </Link>]}
-              key={item.id}
               // hoverable={true}
               loading={loading}
               className={style.cateCard}
