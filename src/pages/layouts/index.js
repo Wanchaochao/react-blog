@@ -5,7 +5,8 @@ import Link from 'umi/link';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import style from './style.less';
-
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 class BasicLayout extends Component {
 
@@ -23,12 +24,12 @@ class BasicLayout extends Component {
     noopener: 'noopener',
   };
 
-  dateCellRender() {
-
+  componentWillUpdate() {
+    NProgress.start()
   }
 
-  monthCellRender() {
-
+  componentDidUpdate () {
+    NProgress.done()
   }
 
   static onPanelChange() {
@@ -47,7 +48,6 @@ class BasicLayout extends Component {
     // startTime.startOf('hour').fromNow()
     return (
       <div id="app">
-        {/*顶部margin*/}
         <Layout style={{ overflow: 'hidden' }}>
           <div className={style.topMargin}/>
           <Row type="flex" justify="space-around" gutter={{ xs: 8, sm: 16, md: 24 }}>
