@@ -16,7 +16,7 @@ const TextArea = Input.TextArea;
 const Editor = ({ onChange, onSubmit, loading, value }) => (
   <div>
     <Form.Item>
-      <TextArea rows={4} onChange={onChange} value={value} style={{resize:"none", maxLength: "50"}} />
+      <TextArea rows={4} onChange={onChange} value={value} style={{ resize: 'none', maxLength: '50' }}/>
 
     </Form.Item>
     <Form.Item className="pull-right">
@@ -52,7 +52,7 @@ const CommentList = ({ comments, loading, evaluate }) => (
                   <Icon
                     type="like"
                     theme="outlined"
-                    onClick={() => evaluate(item.id, index, 1)}
+                    onClick={() => evaluate(item.id, 1, 2, index)}
                   />
                 </Tooltip>
                 <span style={{ paddingLeft: 8, cursor: 'auto' }}>
@@ -64,7 +64,7 @@ const CommentList = ({ comments, loading, evaluate }) => (
                   <Icon
                     type="dislike"
                     theme="outlined"
-                    onClick={() => evaluate(item.id, index, 0)}
+                    onClick={() => evaluate(item.id,1 ,2, index)}
                   />
                 </Tooltip>
                 <span style={{ paddingLeft: 8, cursor: 'auto' }}>
@@ -150,22 +150,22 @@ class Article extends Component {
     this.setState({ commentContent: e.target.value });
   };
   handleSubmit = () => {
-    let me = this
-    sync(function *() {
+    let me = this;
+    sync(function* () {
       yield me.props.dispatch({
-        type: "article/commentApi",
-        payload: {article_id:me.props.location.query.id}
-      })
-    })
-    this.setState({commentContent: ''})
+        type: 'article/commentApi',
+        payload: { article_id: me.props.location.query.id, content: me.props.state.commentContent },
+      });
+    });
+    this.setState({ commentContent: '' });
   };
 
-  evaluate = (id, index, type) => {
+  evaluate = (id, praise, type, index) => {
     let me = this;
     sync(function* () {
       yield me.props.dispatch({
         type: 'article/evaluateApi',
-        payload: { id, index, type },
+        payload: { id, praise, type, index },
       });
     });
   };
@@ -176,7 +176,7 @@ class Article extends Component {
 
   render() {
     const { loading } = this.props;
-    const { comments,content,prev,next } = this.props.article;
+    const { comments, content, prev, next } = this.props.article;
     const { commentContent } = this.state;
     return (
       <div>
