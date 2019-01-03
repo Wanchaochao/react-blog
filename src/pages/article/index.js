@@ -95,6 +95,7 @@ class Article extends Component {
 
   state = {
     commentContent: '',
+    commentNickname: '匿名用户',
     replyContent: '', // 要回复评论的内容
     replyId: 0, // 要回复评论的id
     submitting: false,
@@ -150,14 +151,16 @@ class Article extends Component {
     this.setState({ commentContent: e.target.value });
   };
   handleSubmit = () => {
+    const {commentContent, commentNickname} = this.props.state
     let me = this;
     sync(function* () {
       yield me.props.dispatch({
         type: 'article/commentApi',
-        payload: { article_id: me.props.location.query.id, content: me.props.state.commentContent },
+        payload: { article_id: me.props.location.query.id, content: commentContent, nickname: commentNickname },
       });
     });
     this.setState({ commentContent: '' });
+    this.setState({ commentNickname: '' });
   };
 
   evaluate = (id, praise, type, index) => {

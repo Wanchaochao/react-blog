@@ -18,7 +18,7 @@ export default {
       yield put({ type: 'updateEvaluate', payload: ret });
     },
     * commentApi({ payload }, { put }) {
-      let ret = yield createCommentApi({ article_id: payload.article_id, content: payload.content});
+      let ret = yield createCommentApi({ article_id: payload.article_id, content: payload.content, nickname: payload.nickname});
       yield put({ type: 'updateComments', payload: ret });
     },
 
