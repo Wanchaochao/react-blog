@@ -24,7 +24,7 @@ class BasicLayout extends Component {
     noopener: 'noopener',
   };
 
-  componentWillUpdate() {
+  UNSAFE_componentWillUpdate() {
     NProgress.start()
   }
 
@@ -77,13 +77,13 @@ class BasicLayout extends Component {
                     title={<Row>
                       <Link to="/articleList">
                         <Col span={12} className={style.cardRightBorder}>
-                          <p>日志</p>
+                          <h5>日志</h5>
                           <p>8</p>
                         </Col>
                       </Link>
                       <Col span={12}>
                         <Link to="/categories">
-                          <p>分类</p>
+                          <h5>分类</h5>
                           <p>10</p>
                         </Link>
                       </Col>

@@ -16,7 +16,8 @@ const TextArea = Input.TextArea;
 const Editor = ({ onChange, onSubmit, loading, value }) => (
   <div>
     <Form.Item>
-      <TextArea rows={4} onChange={onChange} value={value}/>
+      <TextArea rows={4} onChange={onChange} value={value} style={{resize:"none", maxLength: "50"}} />
+
     </Form.Item>
     <Form.Item className="pull-right">
       <Button
@@ -176,7 +177,7 @@ class Article extends Component {
   render() {
     const { loading } = this.props;
     const { comments,content,prev,next } = this.props.article;
-    const { commentContent, submitting } = this.state;
+    const { commentContent } = this.state;
     return (
       <div>
         <Row className={style.articleContainer}>

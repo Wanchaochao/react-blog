@@ -8,15 +8,15 @@ import { sync } from '../../util';
 
 const { Meta } = Card;
 
-@connect(({ category, loading }) => ({
-  category,
-  loading: loading.models.category,
+@connect(({ categories, loading }) => ({
+  categories,
+  loading: loading.models.categories,
 }))
 class Categories extends Component {
 
   load = () => {
     return this.props.dispatch({
-      type: 'category/getCategories',
+      type: 'categories/getCategories',
     })
   }
 
@@ -28,18 +28,17 @@ class Categories extends Component {
   }
 
   render() {
-    const {category,loading} = this.props
+    const {categories,loading} = this.props
     return (
-      <Row>
+      <Row className="container">
         <Col span={24}>
-        {category.list.map((item,index) => {
+        {categories.list.map((item,index) => {
           return (<div className={(index + 2) % 3 === 0 ? style.midItemContainer : style.itemContainer} key={item.id}>
             <Card
               cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"/>}
-              actions={[<Link to={"article?id=" + item.id }>
-                <span>共{item.articles.length}篇文章 </span> <Icon type="read" style={{ color: 'green' }} className={globalLess['pull-right']}/>
+              actions={[<Link to={"category?id=" + item.id }>
+                <span>共{item.articles.length}篇文章 </span> <Icon type="read" style={{ color: '#62b9de' }} className={globalLess['pull-right']}/>
               </Link>]}
-              // hoverable={true}
               loading={loading}
               className={style.cateCard}
             >

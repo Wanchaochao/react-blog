@@ -39,7 +39,7 @@ export default {
     //   target: 'http://localhost:8081',
     //   changeOrigin: true
     // },
-    '/api': {
+    '/api/': {
       target: 'https://easymock.verystar.cn/mock/5c248a445595980019189316/example',
       changeOrigin: true
     },

@@ -1,4 +1,4 @@
-import { getCategoriesApi } from '../service';
+import { getArticlesApi } from '../service';
 
 export default {
   namespace: 'category',
@@ -6,17 +6,13 @@ export default {
     list: [],
   },
   effects: {
-    * getCategories({payload}, { put }) {
-      const list = yield getCategoriesApi();
-      yield put({ type: 'setCategories', payload: {list} });
+    * getArticles({ payload }, { put, set, select }) {
+      let ret = yield getArticlesApi(payload);
+      yield put({ type: 'setArticles', payload: { list: ret } });
     },
   },
   reducers: {
-    setCategories(state, { payload }) {
-      console.log({
-        ...state,
-        ...payload,
-      })
+    setArticles(state, { payload }) {
       return {
         ...state,
         ...payload,
