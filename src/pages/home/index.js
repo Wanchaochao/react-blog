@@ -2,45 +2,33 @@ import React, { Component } from 'react';
 import { Row, Col, Icon, Button } from 'antd';
 import Link from 'umi/link';
 import style from './style.less';
+import {connect} from 'dva'
+import { sync } from '../../util';
 
+
+@connect(({ home, loading }) => ({
+  home,
+  loading: loading.models.home,
+}))
 class Home extends Component {
 
-  state = {
-    articles: [
-      {
-        id: '34',
-        title: 'react dva model',
-        author: 'little bug',
-        category: 'javascript',
-        category_id: '3',
-        description: 'dva model 对象 基本属性',
-        created_at: '2018-12-12'
-      },
-      {
-        id: '14',
-        title: 'react dva model',
-        author: 'little bug',
-        category: 'javascript',
-        category_id: '3',
-        description: 'dva model 对象 基本属性',
-        created_at: '2018-12-12'
-      },
-      {
-        id: '24',
-        title: 'react dva model',
-        author: 'little bug',
-        category: 'javascript',
-        category_id: '3',
-        description: 'dva model 对象 基本属性',
-        created_at: '2018-12-12'
-      },
+  load = (page) => {
+    this.props.dispatch({
+      type: 'home/articleListApi',
+      payload:{page}
+    })
+  }
 
-    ],
-  };
+  componentDidMount() {
+    this.load(1)
+  }
 
   render() {
+
+    const {list} = this.props.home
+
     return (<Row type="flex" justify="center">
-      {this.state.articles.map(item => {
+      {list.length > 0 && list.map(item => {
         return (
           <Col className={style.contentItem} span={24} key={item.id}>
 

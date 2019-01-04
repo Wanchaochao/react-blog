@@ -6,10 +6,10 @@ import style from './style.less';
 import { connect } from 'dva';
 import { sync } from '../../util';
 import Link from 'umi/link';
-import 'highlight.js/styles/github.css';
 import { get } from '../../util';
 import '../../global.less';
 import moment from 'moment';
+import 'highlight.js/styles/dracula.css'
 
 const TextArea = Input.TextArea;
 
@@ -99,6 +99,7 @@ class Article extends Component {
     replyContent: '', // 要回复评论的内容
     replyId: 0, // 要回复评论的id
     submitting: false,
+    marked: marked
   };
 
   load = (id) => {
@@ -108,9 +109,8 @@ class Article extends Component {
     });
   };
 
-
-  componentDidCatch() {
-    marked.setOptions({
+  componentDidUpdate() {
+    this.state.marked.setOptions({
       renderer: new marked.Renderer(),
       gfm: true,
       tables: true,
@@ -120,27 +120,13 @@ class Article extends Component {
       smartLists: true,
       smartypants: false,
       highlight: function(code) {
-        hljs.initHighlightingOnLoad();
+        hljs.initHighlightingOnLoad()
         return hljs.highlightAuto(code).value;
       },
     });
   }
 
   componentDidMount() {
-    marked.setOptions({
-      renderer: new marked.Renderer(),
-      gfm: true,
-      tables: true,
-      breaks: false,
-      pedantic: false,
-      sanitize: false,
-      smartLists: true,
-      smartypants: false,
-      highlight: function(code) {
-        hljs.initHighlightingOnLoad();
-        return hljs.highlightAuto(code).value;
-      },
-    });
     let self = this;
     sync(function* () {
       yield self.load(self.props.location.query.id);

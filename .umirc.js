@@ -35,13 +35,13 @@ export default {
     ]
   }],
   proxy: {
-    // '/api': {
-    //   target: 'http://localhost:8081',
-    //   changeOrigin: true
-    // },
-    '/api/': {
-      target: 'https://easymock.verystar.cn/mock/5c248a445595980019189316/example',
+    '/api': {
+      target: 'http://localhost:8081',
       changeOrigin: true
     },
+    // '/api/': {
+    //   target: 'https://easymock.verystar.cn/mock/5c248a445595980019189316/example',
+    //   changeOrigin: true
+    // },
   },
 }

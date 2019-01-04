@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Row, List, Icon, Avatar } from 'antd';
-import Link from 'umi/link'
+import Link from 'umi/link';
 import { sync } from '../../util';
 import { connect } from 'dva';
-import style from './style.less'
+import style from './style.less';
 
 
 const IconText = ({ type, text }) => (
@@ -21,10 +21,10 @@ const IconText = ({ type, text }) => (
 
 class Index extends Component {
 
-  load = (id) => {
+  load = (category_id) => {
     return this.props.dispatch({
       type: 'category/getArticles',
-      payload: { id },
+      payload: { category_id: parseInt(category_id, 10) },
     });
   };
 
@@ -39,7 +39,7 @@ class Index extends Component {
   render() {
 
     const { list } = this.props.category;
-    console.log(list)
+    console.log(list);
     return (
       <div>
         <Row className="container">
@@ -49,7 +49,8 @@ class Index extends Component {
             renderItem={item => (
               <List.Item
                 key={item.id}
-                actions={[<IconText type="like-o" text={item.praise_num} />, <IconText type="dislike-o" text={item.against_num} />, <IconText type="message" text="2" />]}
+                actions={[<IconText type="like-o" text={item.like}/>,
+                  <IconText type="dislike-o" text={item.dislike}/>, <IconText type="message" text={item.comments_num} />]}
                 className={style.customListItem}
               >
                 <List.Item.Meta
@@ -57,7 +58,6 @@ class Index extends Component {
                   title={<Link to={'article?id=' + item.id}>{item.title}</Link>}
                   description={item.description}
                 />
-                {item.content}
               </List.Item>
             )}
           >
