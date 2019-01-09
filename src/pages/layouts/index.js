@@ -35,9 +35,9 @@ class BasicLayout extends Component {
       { name: '关于', link: '/about' },
     ],
     friendsBlogs: [
-      { name: '蔡旭东', link: 'https://fifsky.com/' },
-      { name: '刘金星', link: 'https://laravel.sh-jinger.com' },
-      { name: '李宇', link: 'http://liyu.91yiso.com' },
+      { name: 'fifsky', link: 'https://fifsky.com/' },
+      { name: 'JinXin', link: 'https://laravel.sh-jinger.com' },
+      { name: 'LiYu', link: 'http://liyu.91yiso.com' },
     ],
     noopener: 'noopener',
   };
@@ -93,7 +93,7 @@ class BasicLayout extends Component {
                   <Card
                     className={style.blogBottomTitleCard}
                     title={<Row>
-                      <Link to="/articleList">
+                      <Link to="/">
                         <Col span={12} className={style.cardRightBorder}>
                           <h5>日志</h5>
                           <p>8</p>

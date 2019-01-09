@@ -44,7 +44,7 @@ class Categories extends Component {
                 className={style.cateCard}
               >
                 <Meta
-                  avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>}
+                  avatar={<Avatar src={item.avatar} />}
                   title={item.title}
                   description={<Tooltip title={item.description} placement="right"
                                         className={style.description}

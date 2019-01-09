@@ -1,4 +1,4 @@
-import { createApi } from '../util';
+import {createApi} from '../util'
 
 export const getArticleListApi = data => createApi('/api/articleList', data, 'POST')
 export const getArticleApi = data => createApi('/api/article?id=' + data.id)

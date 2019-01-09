@@ -1,23 +1,22 @@
-import React, { Component } from 'react';
-import { Row, Col, Icon, Button, Comment, Tooltip, Input, Form, Avatar, List } from 'antd';
-import marked from 'marked';
-import hljs from 'highlight.js';
-import style from './style.less';
-import { connect } from 'dva';
-import { sync } from '../../util';
-import Link from 'umi/link';
-import { get } from '../../util';
-import '../../global.less';
-import moment from 'moment';
+import React, {Component} from 'react'
+import {Row, Col, Icon, Button, Comment, Tooltip, Input, Form, Avatar, List} from 'antd'
+import marked from 'marked'
+import hljs from 'highlight.js'
+import style from './style.less'
+import {connect} from 'dva'
+import {sync} from '../../util'
+import {get} from '../../util'
+import '../../global.less'
+import moment from 'moment'
 import 'highlight.js/styles/dracula.css'
 
-const TextArea = Input.TextArea;
 
-const Editor = ({ onChange, onSubmit, loading, value }) => (
+const TextArea = Input.TextArea
+
+const Editor = ({onChange, onSubmit, loading, value}) => (
   <div>
     <Form.Item>
-      <TextArea rows={4} onChange={onChange} value={value} style={{ resize: 'none', maxLength: '50' }}/>
-
+      <TextArea rows={4} onChange={onChange} value={value} style={{resize: 'none', maxLength: '50'}}/>
     </Form.Item>
     <Form.Item className="pull-right">
       <Button
@@ -30,14 +29,15 @@ const Editor = ({ onChange, onSubmit, loading, value }) => (
       </Button>
     </Form.Item>
   </div>
-);
+)
 
-const CommentList = ({ comments, loading, evaluate }) => (
+const CommentList = ({comments, loading, evaluate}) => (
   <List
     dataSource={comments}
-    header={`${comments.length}条回复`}
+    header={comments.length > 0 ? `${comments.length}条回复` : ''}
     itemLayout="horizontal"
     loading={loading}
+    locale={{emptyText:'暂无评论,快来抢沙发吧~'}}
     renderItem={(item, index) => (
       <Comment
         key={item.id}
@@ -55,7 +55,7 @@ const CommentList = ({ comments, loading, evaluate }) => (
                     onClick={() => evaluate(item.id, 1, 2, index)}
                   />
                 </Tooltip>
-                <span style={{ paddingLeft: 8, cursor: 'auto' }}>
+                <span style={{paddingLeft: 8, cursor: 'auto'}}>
                   {item.praise_num}
                 </span>
               </span>,
@@ -64,10 +64,10 @@ const CommentList = ({ comments, loading, evaluate }) => (
                   <Icon
                     type="dislike"
                     theme="outlined"
-                    onClick={() => evaluate(item.id,1 ,2, index)}
+                    onClick={() => evaluate(item.id, 1, 2, index)}
                   />
                 </Tooltip>
-                <span style={{ paddingLeft: 8, cursor: 'auto' }}>
+                <span style={{paddingLeft: 8, cursor: 'auto'}}>
                   {item.against_num}
                 </span>
               </span>,
@@ -83,9 +83,9 @@ const CommentList = ({ comments, loading, evaluate }) => (
       </Comment>
     )}
   />
-);
+)
 
-@connect(({ article, loading }) => ({
+@connect(({article, loading}) => ({
   article,
   loading: loading.models.article,
 }))
@@ -99,15 +99,15 @@ class Article extends Component {
     replyContent: '', // 要回复评论的内容
     replyId: 0, // 要回复评论的id
     submitting: false,
-    marked: marked
-  };
+    marked: marked,
+  }
 
   load = (id) => {
     return this.props.dispatch({
       type: 'article/articleApi',
-      payload: { id },
-    });
-  };
+      payload: {id},
+    })
+  }
 
   componentDidUpdate() {
     this.state.marked.setOptions({
@@ -119,54 +119,62 @@ class Article extends Component {
       sanitize: false,
       smartLists: true,
       smartypants: false,
-      highlight: function(code) {
+      highlight: function (code) {
         hljs.initHighlightingOnLoad()
-        return hljs.highlightAuto(code).value;
+        return hljs.highlightAuto(code).value
       },
-    });
+    })
   }
 
   componentDidMount() {
-    let self = this;
+    let self = this
     sync(function* () {
-      yield self.load(self.props.location.query.id);
-    });
+      yield self.load(self.props.location.query.id)
+    })
   }
 
   handleChange = (e) => {
-    this.setState({ commentContent: e.target.value });
-  };
+    this.setState({commentContent: e.target.value})
+  }
   handleSubmit = () => {
-    const {commentContent, commentNickname} = this.props.state
-    let me = this;
+    const {commentContent, commentNickname} = this.state
+    let me = this
     sync(function* () {
       yield me.props.dispatch({
         type: 'article/commentApi',
-        payload: { article_id: me.props.location.query.id, content: commentContent, nickname: commentNickname },
-      });
-    });
-    this.setState({ commentContent: '' });
-    this.setState({ commentNickname: '' });
-  };
+        payload: {article_id: me.props.location.query.id, content: commentContent, nickname: commentNickname},
+      })
+    })
+    this.setState({commentContent: ''})
+    this.setState({commentNickname: ''})
+  }
 
   evaluate = (id, praise, type, index) => {
-    let me = this;
+    let me = this
     sync(function* () {
       yield me.props.dispatch({
         type: 'article/evaluateApi',
-        payload: { id, praise, type, index },
-      });
-    });
-  };
+        payload: {id, praise, type, index},
+      })
+    })
+  }
 
   reply = () => {
-    alert('reply');
-  };
+    alert('reply')
+  }
+
+  pageChange = (id) => {
+    this.props.history.push('/article?id='+id)
+    let self = this;
+    sync(function* () {
+      yield self.load(id)
+    });
+  }
 
   render() {
-    const { loading } = this.props;
-    const { comments, content, prev, next } = this.props.article;
-    const { commentContent } = this.state;
+    const {loading} = this.props
+    const {comments, content, prev, next} = this.props.article
+    const {commentContent} = this.state
     return (
       <div>
         <Row className={style.articleContainer}>
@@ -178,33 +186,29 @@ class Article extends Component {
               分类 <Icon theme="twoTone" type="database"/> Javascript
             </p>
             <div className={style.articleContent} id="content"
-                 dangerouslySetInnerHTML={{ __html: marked(content) }}>
+                 dangerouslySetInnerHTML={{__html: marked(content)}}>
             </div>
-            <Row style={{ margin: '15px 0 0 0' }}>
+            <Row style={{margin: '15px 0 0 0'}}>
               <Col span={5}>
                 {get(prev, 'id', 0)
-                  ? <Link to={'article?id=' + prev.id}>
-                    <Button type="default" htmlType="button">
-                      <Icon type="left"/>{prev.title}
-                    </Button>
-                  </Link>
+                  ? <Button type="default" htmlType="button" onClick={() => this.pageChange(prev.id)}>
+                    <Icon type="left"/>{prev.title}
+                  </Button>
                   : ''
                 }
               </Col>
-              <Col span={5} offset={14} style={{ textAlign: 'right' }}>
+              <Col span={5} offset={14} style={{textAlign: 'right'}}>
                 {get(next, 'id', 0)
-                  ? <Link to={'article?id=' + prev.id}>
-                    <Button type="default" htmlType="button">
-                      {next.title}<Icon type="right"/>
-                    </Button>
-                  </Link>
+                  ? <Button type="default" htmlType="button" onClick={() => this.pageChange(next.id)}>
+                    {next.title}<Icon type="right"/>
+                  </Button>
                   : ''
                 }
               </Col>
             </Row>
           </Col>
         </Row>
-        <Row className={style.articleContainer} style={{ margin: '15px 0 15px 0' }}>
+        <Row className={style.articleContainer}>
           <Col>
             <div>
               <Comment
@@ -229,8 +233,8 @@ class Article extends Component {
         </Row>
       </div>
 
-    );
+    )
   }
 }
 
-export default Article;
+export default Article
