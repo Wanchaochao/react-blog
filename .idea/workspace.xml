@@ -1,20 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e7b18c08-63e3-4ec0-9e5c-83e73edf18bc" name="Default Changelist" comment="merge golang api">
-      <change afterPath="$PROJECT_DIR$/.umirc.prod.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/about/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/about/style.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+    <list default="true" id="e7b18c08-63e3-4ec0-9e5c-83e73edf18bc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.umirc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.umirc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/article/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/article/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/article/style.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/article/style.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/categories/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/categories/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/layouts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/layouts/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -52,9 +42,9 @@
           <entry key="eslintrc" value="5" />
           <entry key="gitignore" value="4" />
           <entry key="html" value="4" />
-          <entry key="js" value="135" />
+          <entry key="js" value="136" />
           <entry key="json" value="15" />
-          <entry key="less" value="27" />
+          <entry key="less" value="28" />
           <entry key="lock" value="2" />
           <entry key="md" value="2" />
           <entry key="prettierignore" value="1" />
@@ -70,8 +60,8 @@
           <entry key="EJS" value="8" />
           <entry key="HTML" value="4" />
           <entry key="JSON" value="21" />
-          <entry key="JavaScript" value="136" />
-          <entry key="Less" value="27" />
+          <entry key="JavaScript" value="137" />
+          <entry key="Less" value="28" />
           <entry key="Markdown" value="2" />
           <entry key="PLAIN_TEXT" value="14" />
           <entry key="TypeScript" value="29" />
@@ -86,13 +76,13 @@
           <entry key="eslintrc" value="2" />
           <entry key="gitignore" value="31" />
           <entry key="html" value="23" />
-          <entry key="js" value="11653" />
+          <entry key="js" value="11931" />
           <entry key="json" value="11" />
-          <entry key="less" value="1228" />
+          <entry key="less" value="1246" />
           <entry key="md" value="45" />
           <entry key="production" value="2" />
           <entry key="ts" value="28" />
-          <entry key="txt" value="143" />
+          <entry key="txt" value="171" />
           <entry key="umi" value="1" />
         </counts>
       </usages-collector>
@@ -102,10 +92,10 @@
           <entry key="EJS" value="43" />
           <entry key="HTML" value="24" />
           <entry key="JSON" value="13" />
-          <entry key="JavaScript" value="11653" />
-          <entry key="Less" value="1228" />
+          <entry key="JavaScript" value="11931" />
+          <entry key="Less" value="1246" />
           <entry key="Markdown" value="45" />
-          <entry key="PLAIN_TEXT" value="224" />
+          <entry key="PLAIN_TEXT" value="252" />
           <entry key="TypeScript" value="28" />
         </counts>
       </usages-collector>
@@ -120,6 +110,27 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/article/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+              <folding>
+                <element signature="e#0#38#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pages/article/style.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/service/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="198">
@@ -128,11 +139,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="23" column="19" lean-forward="true" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
+            <state relative-caret-position="594">
+              <caret line="27" column="4" lean-forward="true" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -149,8 +160,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.umirc.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-729">
-              <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+            <state relative-caret-position="-507">
+              <caret line="1" column="16" lean-forward="true" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -167,17 +178,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.umirc.prod.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="53" selection-start-line="53" selection-end-line="72" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/oss.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+            <state relative-caret-position="22">
+              <caret line="1" column="43" selection-start-line="1" selection-start-column="43" selection-end-line="1" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -200,7 +202,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>l</find>
       <find>Icon</find>
       <find>php</find>
       <find>language-php</find>
@@ -230,6 +231,7 @@
       <find>No D</find>
       <find>npro</find>
       <find>config</find>
+      <find>提交</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -280,20 +282,20 @@
         <option value="$PROJECT_DIR$/src/models/article.js" />
         <option value="$PROJECT_DIR$/src/service/index.js" />
         <option value="$PROJECT_DIR$/src/pages/categories/index.js" />
-        <option value="$PROJECT_DIR$/src/pages/article/style.less" />
-        <option value="$PROJECT_DIR$/src/pages/article/index.js" />
         <option value="$PROJECT_DIR$/src/pages/about/index.html" />
         <option value="$PROJECT_DIR$/src/pages/about/index.js" />
         <option value="$PROJECT_DIR$/src/pages/layouts/index.js" />
         <option value="$PROJECT_DIR$/config/test.js" />
         <option value="$PROJECT_DIR$/config/index.js" />
-        <option value="$PROJECT_DIR$/.umirc.js" />
         <option value="$PROJECT_DIR$/config/oss.js" />
         <option value="$PROJECT_DIR$/.env.production" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/.umirc.prod.js" />
         <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/.umirc.js" />
+        <option value="$PROJECT_DIR$/.umirc.prod.js" />
+        <option value="$PROJECT_DIR$/src/pages/article/index.js" />
+        <option value="$PROJECT_DIR$/src/pages/article/style.less" />
       </list>
     </option>
   </component>
@@ -345,7 +347,20 @@
             <path>
               <item name="myapp" type="b2602c69:ProjectViewProjectNode" />
               <item name="myapp" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="myapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="myapp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="myapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="myapp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="article" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -434,7 +449,7 @@
       <workItem from="1546394067310" duration="606000" />
       <workItem from="1546412213748" duration="16647000" />
       <workItem from="1546581215424" duration="10042000" />
-      <workItem from="1546855526572" duration="14187000" />
+      <workItem from="1546855526572" duration="16119000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1545651426569</created>
@@ -534,17 +549,31 @@
       <option name="project" value="LOCAL" />
       <updated>1547028139419</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="打包后自动上传到oss">
+      <created>1547029633906</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1547029633906</updated>
+    </task>
+    <task id="LOCAL-00016" summary="打包后自动上传到oss">
+      <created>1547029798859</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1547029798859</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="143393000" />
+    <option name="totallyTimeSpent" value="145325000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="992" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17370644" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17370644" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -559,7 +588,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.10404624" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.34104046" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -589,7 +618,8 @@
     <MESSAGE value="fix store comment" />
     <MESSAGE value="merge golang api" />
     <MESSAGE value="update ignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="update ignore" />
+    <MESSAGE value="打包后自动上传到oss" />
+    <option name="LAST_COMMIT_MESSAGE" value="打包后自动上传到oss" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/node_modules/.bin/umi">
@@ -770,13 +800,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/article/style.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/umi/src/router.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
@@ -839,16 +862,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/article/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="962">
-          <caret line="232" column="14" selection-start-line="232" selection-start-column="14" selection-end-line="232" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/layouts/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
@@ -890,13 +903,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.umirc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-729">
-          <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="382">
@@ -918,17 +924,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.umirc.prod.js">
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="53" selection-start-line="53" selection-end-line="72" selection-end-column="4" />
+        <state relative-caret-position="594">
+          <caret line="27" column="4" lean-forward="true" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
+    <entry file="file://$PROJECT_DIR$/.umirc.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="23" column="19" lean-forward="true" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
+        <state relative-caret-position="-507">
+          <caret line="1" column="16" lean-forward="true" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.umirc.prod.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="43" selection-start-line="1" selection-start-column="43" selection-end-line="1" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/article/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/article/style.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
         </state>
       </provider>
     </entry>

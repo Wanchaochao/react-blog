@@ -12,32 +12,14 @@ import 'highlight.js/styles/dracula.css'
 
 
 const TextArea = Input.TextArea
-
-const Editor = ({onChange, onSubmit, loading, value}) => (
-  <div>
-    <Form.Item>
-      <TextArea rows={4} onChange={onChange} value={value} style={{resize: 'none', maxLength: '50'}}/>
-    </Form.Item>
-    <Form.Item className="pull-right">
-      <Button
-        htmlType="submit"
-        loading={loading}
-        onClick={onSubmit}
-        type="primary"
-      >
-        提交
-      </Button>
-    </Form.Item>
-  </div>
-)
-
-const CommentList = ({comments, loading, evaluate}) => (
+const CommentList = ({comments, loading, evaluate, className}) => (
   <List
+    className={className}
     dataSource={comments}
     header={comments.length > 0 ? `${comments.length}条回复` : ''}
     itemLayout="horizontal"
     loading={loading}
-    locale={{emptyText:'暂无评论,快来抢沙发吧~'}}
+    locale={{emptyText: '暂无评论,快来抢沙发吧~'}}
     renderItem={(item, index) => (
       <Comment
         key={item.id}
@@ -146,7 +128,6 @@ class Article extends Component {
       })
     })
     this.setState({commentContent: ''})
-    this.setState({commentNickname: ''})
   }
 
   evaluate = (id, praise, type, index) => {
@@ -164,17 +145,17 @@ class Article extends Component {
   }
 
   pageChange = (id) => {
-    this.props.history.push('/article?id='+id)
-    let self = this;
+    this.props.history.push('/article?id=' + id)
+    let self = this
     sync(function* () {
       yield self.load(id)
-    });
+    })
   }
 
   render() {
     const {loading} = this.props
     const {comments, content, prev, next} = this.props.article
-    const {commentContent} = this.state
+    const {commentContent, commentNickname} = this.state
     return (
       <div>
         <Row className={style.articleContainer}>
@@ -209,26 +190,39 @@ class Article extends Component {
           </Col>
         </Row>
         <Row className={style.articleContainer}>
-          <Col>
-            <div>
-              <Comment
-                avatar={(
-                  <Avatar
-                    src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                    alt="Han Solo"
-                  />
-                )}
-                content={(
-                  <Editor
-                    onChange={this.handleChange}
-                    value={commentContent}
-                    onSubmit={this.handleSubmit}
-                    loading={loading}
-                  />
-                )}
-              />
-              {comments && <CommentList comments={comments} evaluate={this.evaluate} loading={loading}/>}
-            </div>
+          <Col span={24}>
+            <Comment
+              avatar={(
+                <Avatar
+                  src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                  alt="Han Solo"
+                />
+              )}
+              content={(
+                <div>
+                  <Form.Item>
+                      <TextArea rows={4} onChange={this.handleChange} value={commentContent}
+                                style={{resize: 'none', maxLength: '50'}}/>
+                  </Form.Item>
+                  <Form.Item className="pull-right" style={{marginLeft: '65%',width:'35%'}}>
+                    <Input prefix={<Icon type="smile" value={commentNickname} style={{color: 'rgba(0,0,0,.25)'}}/>}
+                           type="text" placeholder="昵称"/>
+                  </Form.Item>
+                  <Form.Item className="pull-right">
+                    <Button
+                      htmlType="submit"
+                      loading={loading}
+                      onClick={this.handleSubmit}
+                      type="primary"
+                    >
+                      <Icon type="check"  />
+                      提交
+                    </Button>
+                  </Form.Item>
+                </div>
+              )}
+            />
+            {comments && <CommentList comments={comments} evaluate={this.evaluate} loading={loading} className={style.commentsList} />}
           </Col>
         </Row>
       </div>
