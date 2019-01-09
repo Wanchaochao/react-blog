@@ -25,3 +25,7 @@
 .env.*.local
 .env
 .env.production
+
+#config
+
+./config/*
