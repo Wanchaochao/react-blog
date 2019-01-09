@@ -26,6 +26,3 @@
 .env
 .env.production
 
-#config
-
-/config
