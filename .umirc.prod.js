@@ -1,9 +1,6 @@
 // ref: https://umijs.org/config/
 const AliossPlugin = require('webpack-oss')
 
-console.log('prod begin ===================>')
-console.log(process.env)
-
 export default {
   plugins: [
     ['umi-plugin-react', {
