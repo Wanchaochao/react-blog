@@ -1,7 +1,5 @@
 import React, {Component} from 'react'
-import {Row, Col, Icon, Button, Comment, Tooltip, Input, Form, Avatar, List} from 'antd'
-import marked from 'marked'
-import hljs from 'highlight.js'
+import {Row, Col, Icon, Button, Comment, Tooltip, Avatar, List, message} from 'antd'
 import style from './style.less'
 import {connect} from 'dva'
 import {sync} from '../../util'
@@ -9,9 +7,8 @@ import {get} from '../../util'
 import '../../global.less'
 import moment from 'moment'
 import 'highlight.js/styles/dracula.css'
+import {Input, Form} from '../../components/form'
 
-
-const TextArea = Input.TextArea
 const CommentList = ({comments, loading, evaluate, className}) => (
   <List
     className={className}
@@ -71,18 +68,7 @@ const CommentList = ({comments, loading, evaluate, className}) => (
   article,
   loading: loading.models.article,
 }))
-
-
 class Article extends Component {
-
-  state = {
-    commentContent: '',
-    commentNickname: '匿名用户',
-    replyContent: '', // 要回复评论的内容
-    replyId: 0, // 要回复评论的id
-    submitting: false,
-    marked: marked,
-  }
 
   load = (id) => {
     return this.props.dispatch({
@@ -92,20 +78,7 @@ class Article extends Component {
   }
 
   componentDidUpdate() {
-    this.state.marked.setOptions({
-      renderer: new marked.Renderer(),
-      gfm: true,
-      tables: true,
-      breaks: false,
-      pedantic: false,
-      sanitize: false,
-      smartLists: true,
-      smartypants: false,
-      highlight: function (code) {
-        hljs.initHighlightingOnLoad()
-        return hljs.highlightAuto(code).value
-      },
-    })
+
   }
 
   componentDidMount() {
@@ -115,19 +88,27 @@ class Article extends Component {
     })
   }
 
-  handleChange = (e) => {
-    this.setState({commentContent: e.target.value})
-  }
   handleSubmit = () => {
-    const {commentContent, commentNickname} = this.state
     let me = this
-    sync(function* () {
-      yield me.props.dispatch({
-        type: 'article/commentApi',
-        payload: {article_id: me.props.location.query.id, content: commentContent, nickname: commentNickname},
-      })
+
+    const {form} = this.props
+    form.validateFields((err, values) => {
+      console.log(values)
+      if (err || values.content.length === 0) {
+        return message.error('数据验证未通过')
+      } else {
+        sync(function* () {
+          yield me.props.dispatch({
+            type: 'article/commentApi',
+            payload: {
+              article_id: parseInt(me.props.location.query.id),
+              ...values
+            },
+          })
+        })
+      }
     })
-    this.setState({commentContent: ''})
+
   }
 
   evaluate = (id, praise, type, index) => {
@@ -152,10 +133,13 @@ class Article extends Component {
     })
   }
 
+  commentChange = () => {
+
+  }
+
   render() {
-    const {loading} = this.props
+    const {loading, form} = this.props
     const {comments, content, prev, next} = this.props.article
-    const {commentContent, commentNickname} = this.state
     return (
       <div>
         <Row className={style.articleContainer}>
@@ -166,8 +150,7 @@ class Article extends Component {
               16:54:47 |
               分类 <Icon theme="twoTone" type="database"/> Javascript
             </p>
-            <div className={style.articleContent} id="content"
-                 dangerouslySetInnerHTML={{__html: marked(content)}}>
+            <div className={style.articleContent}  dangerouslySetInnerHTML={{__html: content}}>
             </div>
             <Row style={{margin: '15px 0 0 0'}}>
               <Col span={5}>
@@ -190,39 +173,42 @@ class Article extends Component {
           </Col>
         </Row>
         <Row className={style.articleContainer}>
+
           <Col span={24}>
-            <Comment
-              avatar={(
-                <Avatar
-                  src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                  alt="Han Solo"
+            <Form api={form} data={{comment: '', nickname: ''}} className={style.formContainer}
+                  onSubmit={this.handleSubmit}>
+              <Form.Item>
+                <Input
+                  id="content"
+                  textarea
+                  style={{resize: 'none'}}
+                  max={30}
+                  rows={4}
+                  msg="写点什么吧~"
                 />
-              )}
-              content={(
-                <div>
-                  <Form.Item>
-                      <TextArea rows={4} onChange={this.handleChange} value={commentContent}
-                                style={{resize: 'none', maxLength: '50'}}/>
-                  </Form.Item>
-                  <Form.Item className="pull-right" style={{marginLeft: '65%',width:'35%'}}>
-                    <Input prefix={<Icon type="smile" value={commentNickname} style={{color: 'rgba(0,0,0,.25)'}}/>}
-                           type="text" placeholder="昵称"/>
-                  </Form.Item>
-                  <Form.Item className="pull-right">
-                    <Button
-                      htmlType="submit"
-                      loading={loading}
-                      onClick={this.handleSubmit}
-                      type="primary"
-                    >
-                      <Icon type="check"  />
-                      提交
-                    </Button>
-                  </Form.Item>
-                </div>
-              )}
-            />
-            {comments && <CommentList comments={comments} evaluate={this.evaluate} loading={loading} className={style.commentsList} />}
+              </Form.Item>
+              <Form.Item className="pull-right" style={{marginLeft: '70%', width: '30%'}}>
+                <Input
+                  prefix={<Icon type="smile" style={{color: 'rgba(0,0,0,.25)'}}/>}
+                  id="nickname"
+                  msg="昵称"
+                  rules={['required', 'string', 'max=20']}
+                  max={20}
+                />
+              </Form.Item>
+              <Form.Item className="pull-right">
+                <Button
+                  htmlType="submit"
+                  loading={loading}
+                  type="primary"
+                >
+                  <Icon type="check"/>
+                  提交
+                </Button>
+              </Form.Item>
+            </Form>
+            {comments && <CommentList comments={comments} evaluate={this.evaluate} loading={loading}
+                                      className={style.commentsList}/>}
           </Col>
         </Row>
       </div>
@@ -231,4 +217,4 @@ class Article extends Component {
   }
 }
 
-export default Article
+export default Form.create()(Article)

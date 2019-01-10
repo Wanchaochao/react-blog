@@ -1,7 +1,6 @@
-import style from './style.less'
 import React, {Component} from 'react'
 import {Row, Col} from 'antd'
-import Link from 'umi/link'
+
 
 class About extends Component {
 
@@ -14,6 +13,7 @@ class About extends Component {
 
     return (
       <Row className="container">
+
         <Col span={24}>
           <div className="post-block page" >
             <header className="post-header">

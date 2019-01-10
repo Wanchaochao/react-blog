@@ -1,0 +1,92 @@
+// Error Message
+$red: #f5222d;
+.ant-form-item {
+  &.ant-form-item-with-help {
+    margin-bottom: 24px;
+    .ant-transfer-list {
+      border-color: $red;
+    }
+    .ant-input.ant-transfer-list-search {
+      border-color: #d9d9d9;
+      box-shadow: none;
+    }
+  }
+  // 错误提示
+  .ant-form-explain,
+  .ant-form-split {
+    position: absolute;
+    z-index: 2;
+    top: -34px;
+    left: 0;
+    padding: 3px 8px;
+    color: #fff !important;
+    font-size: 12px;
+    line-height: 20px;
+    background: $red;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(#000, 0.3);
+    &::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -4px;
+      border-top: 4px solid $red;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+// Input
+.ant-plus-input {
+  display: flex;
+  &.ant-plus-input-with-count {
+    align-items: flex-end;
+    .count {
+      display: inline-block;
+      height: 20px;
+      color: #ddd;
+      font-size: 12px;
+      line-height: 20px;
+      background: #fff;
+      &.red {
+        color: #f74052;
+      }
+    }
+    input {
+      &:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 100px #fff inset;
+      }
+      &[disabled] {
+        + .ant-input-suffix .count,
+        + .count {
+          display: none;
+        }
+      }
+      + .ant-input-suffix .count {
+        margin-right: -4px;
+        padding-left: 8px;
+      }
+    }
+    textarea + .count {
+      $gap: 1px;
+      position: relative;
+      right: 1px + $gap;
+      bottom: 5px + $gap;
+      padding-left: 6px;
+      padding-right: 6px;
+      white-space: nowrap;
+      border-bottom-right-radius: 20px;
+      transform: translateX(-100%);
+    }
+  }
+}
+// Select
+.ant-plus-select {
+  min-width: 160px;
+}
+// TreeSelect
+.ant-plus-tree-select {
+  min-width: 160px;
+}
