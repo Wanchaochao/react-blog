@@ -40,7 +40,7 @@ export default {
   }],
   proxy: {
     '/api': {
-      target: 'http://localhost:8081',
+      target: 'http://api.littlebug.vip/',
       changeOrigin: true,
     },
     // '/api/': {
