@@ -163,12 +163,12 @@ class Article extends Component {
 
   render() {
     const {loading, form} = this.props
-    const {comments, content, prev, next} = this.props.article
+    const {comments, content, prev, next, title} = this.props.article
     return (
       <div>
         <Row className={style.articleContainer}>
           <Col span={24}>
-            <h2 className={style.articleTitle}>title</h2>
+            <h2 className={style.articleTitle}>{title}</h2>
             <p className={style.articleDescription}>
               <Icon type="home" theme="twoTone"/> Little Bug 发表于 <Icon theme="twoTone" type="schedule"/> 2018-12-17
               16:54:47 |
