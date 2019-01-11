@@ -4,15 +4,20 @@ online project
 <a href="www.littlebug.vip" target="_blank">Little Bug</a>
 
 ## INSTALL(安装)
-
-// 安装umi(antd官方脚手架)
-npm install umi -g
-
-// 安装依赖
-npm install // cnpm install
-
-cp .env.example .env
 ```bash
+# 安装umi(antd官方脚手架)
+npm install umi -g
+```
+
+```bash
+# 安装依赖
+npm install // cnpm install
+```
+
+
+## 修改环境变量
+```bash
+cp .env.example .env
 vim .env
 publicPath = '静态资源路径' # 如果静态资源与打包后的index.html一起放在服务器上,不需要cdn、oss等加速可以忽略这一步
 # aliyun oss 相关配置
