@@ -47,4 +47,5 @@ export default {
     //   changeOrigin: true
     // },
   },
+  publicPath: "http://littlebug.oss-cn-beijing.aliyuncs.com/react.blog.vip/",
 }
