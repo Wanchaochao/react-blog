@@ -34,9 +34,7 @@ const checkStatus = response => {
 }
 
 export const request = (url, options) => {
-  console.log(process.env)
   url = baseUrl + url
-  console.log(url)
   const newOptions = {...options}
   if (newOptions.method === 'POST') {
     if (!(newOptions.body instanceof FormData)) {

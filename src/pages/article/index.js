@@ -9,7 +9,7 @@ import moment from 'moment'
 import 'highlight.js/styles/dracula.css'
 import {Input, Form} from '../../components/form'
 
-const CommentList = ({comments, loading, evaluate, className}) => (
+const CommentList = ({comments, loading, evaluate, className, reply}) => (
   <List
     className={className}
     dataSource={comments}
@@ -43,14 +43,15 @@ const CommentList = ({comments, loading, evaluate, className}) => (
                   <Icon
                     type="dislike"
                     theme="outlined"
-                    onClick={() => evaluate(item.id, 1, 2, index)}
+                    onClick={() => evaluate(item.id, 0, 2, index)}
                   />
                 </Tooltip>
                 <span style={{paddingLeft: 8, cursor: 'auto'}}>
                   {item.against_num}
                 </span>
               </span>,
-          {/*<span onClick={() => this.reply(item.id)}>回复</span>,*/}
+          <span onClick={() => reply(item.id)}>回复</span>,
+
         ]}
         avatar={(
           <Avatar
@@ -101,8 +102,8 @@ class Article extends Component {
           yield me.props.dispatch({
             type: 'article/commentApi',
             payload: {
-              article_id: parseInt(me.props.location.query.id),
-              ...values
+              article_id: parseInt(me.props.location.query.id, 10),
+              ...values,
             },
           })
         })
@@ -122,7 +123,7 @@ class Article extends Component {
   }
 
   reply = () => {
-    alert('reply')
+    message.info('功能正在开发中~')
   }
 
   pageChange = (id) => {
@@ -150,7 +151,7 @@ class Article extends Component {
               16:54:47 |
               分类 <Icon theme="twoTone" type="database"/> Javascript
             </p>
-            <div className={style.articleContent}  dangerouslySetInnerHTML={{__html: content}}>
+            <div className={style.articleContent} dangerouslySetInnerHTML={{__html: content}}>
             </div>
             <Row style={{margin: '15px 0 0 0'}}>
               <Col span={5}>
@@ -207,7 +208,7 @@ class Article extends Component {
                 </Button>
               </Form.Item>
             </Form>
-            {comments && <CommentList comments={comments} evaluate={this.evaluate} loading={loading}
+            {comments && <CommentList comments={comments} evaluate={this.evaluate} loading={loading} reply={this.reply}
                                       className={style.commentsList}/>}
           </Col>
         </Row>

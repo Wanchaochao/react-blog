@@ -38,7 +38,7 @@ export default {
         praise: payload.praise,
         index: payload.index,
       })
-      yield put({type: 'updateEvaluate', payload: ret})
+      yield put({type: 'updateEvaluate', payload: {...ret, index: payload.index}})
     },
     * commentApi({payload}, {put}) {
       console.log('commentApi', payload)
@@ -58,8 +58,8 @@ export default {
       }
     },
     updateEvaluate(state, {payload}) {
-      state.comments[payload.index].like = payload.praise_num
-      state.comments[payload.index].dislike = payload.against_num
+      state.comments[payload.index].praise_num = payload.praise_num
+      state.comments[payload.index].against_num = payload.against_num
       return {
         ...state,
       }
