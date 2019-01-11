@@ -50,7 +50,7 @@ const CommentList = ({comments, loading, evaluate, className}) => (
                   {item.against_num}
                 </span>
               </span>,
-          <span onClick={() => this.reply(item.id)}>回复</span>,
+          {/*<span onClick={() => this.reply(item.id)}>回复</span>,*/}
         ]}
         avatar={(
           <Avatar

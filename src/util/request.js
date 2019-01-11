@@ -1,8 +1,9 @@
 import fetch from 'dva/fetch'
-import { Err } from './error'
-import { getAccessToken } from './auth'
-import { message } from 'antd'
+import {Err} from './error'
+import {getAccessToken} from './auth'
+import {message} from 'antd'
 import co from 'co'
+import baseUrl from '../../config/url'
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -33,6 +34,9 @@ const checkStatus = response => {
 }
 
 export const request = (url, options) => {
+  console.log(process.env)
+  url = baseUrl + url
+  console.log(url)
   const newOptions = {...options}
   if (newOptions.method === 'POST') {
     if (!(newOptions.body instanceof FormData)) {
@@ -58,7 +62,7 @@ export const request = (url, options) => {
     if (ret.retcode === 0) {
       return ret.data
     } else {
-      let error =  Err.instance(ret)
+      let error = Err.instance(ret)
       message.error(error.getMsg())
       throw error
     }
@@ -72,7 +76,7 @@ export const createApi = (url, body, method) => {
 
   let param = {
     body,
-    method: method ? method : "GET",
+    method: method ? method : 'GET',
     headers,
   }
   return request(url, param)
