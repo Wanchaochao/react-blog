@@ -111,9 +111,9 @@ class BasicLayout extends Component {
                       <p>友情链接</p>
                       {this.state.friendsBlogs.map(item => {
                         return (<span className={style.friendLink} key={item.name}>
-                        <Link to={item.link}>
+                        <a href={item.link} target="_blank">
                           {item.name}
-                        </Link>
+                        </a>
                       </span>);
                       })}
                     </div>

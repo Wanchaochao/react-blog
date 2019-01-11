@@ -78,10 +78,6 @@ class Article extends Component {
     })
   }
 
-  componentDidUpdate() {
-
-  }
-
   componentDidMount() {
     let self = this
     sync(function* () {
@@ -134,6 +130,33 @@ class Article extends Component {
     })
   }
 
+
+  subString = (str, len, hasDot) => {
+    var newLength = 0;
+    var newStr = "";
+    var chineseRegex = /[^\x00-\xff]/g;
+    var singleChar = "";
+    var strLength = str.replace(chineseRegex, "**").length;
+    for (var i = 0; i < strLength; i++) {
+      singleChar = str.charAt(i).toString();
+      if (singleChar.match(chineseRegex) != null) {
+        newLength += 2;
+      }
+      else {
+        newLength++;
+      }
+      if (newLength > len) {
+        break;
+      }
+      newStr += singleChar;
+    }
+
+    if (hasDot && strLength > len) {
+      newStr += "...";
+    }
+    return newStr;
+  }
+
   commentChange = () => {
 
   }
@@ -156,16 +179,16 @@ class Article extends Component {
             <Row style={{margin: '15px 0 0 0'}}>
               <Col span={5}>
                 {get(prev, 'id', 0)
-                  ? <Button type="default" htmlType="button" onClick={() => this.pageChange(prev.id)}>
-                    <Icon type="left"/>{prev.title}
+                  ? <Button type="default" className={style.articleBtn} htmlType="button" onClick={() => this.pageChange(prev.id)}>
+                    <Icon type="left"/> <span className={style.btnTitle}> {this.subString(prev.title,6,true)}</span>
                   </Button>
                   : ''
                 }
               </Col>
               <Col span={5} offset={14} style={{textAlign: 'right'}}>
                 {get(next, 'id', 0)
-                  ? <Button type="default" htmlType="button" onClick={() => this.pageChange(next.id)}>
-                    {next.title}<Icon type="right"/>
+                  ? <Button type="default" className={style.articleBtn} htmlType="button" onClick={() => this.pageChange(next.id)}>
+                    <span className={style.btnTitle}>{this.subString(next.title,10,true)} </span> <Icon type="right"/>
                   </Button>
                   : ''
                 }
