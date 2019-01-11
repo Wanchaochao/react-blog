@@ -177,18 +177,18 @@ class Article extends Component {
             <div className={style.articleContent} dangerouslySetInnerHTML={{__html: content}}>
             </div>
             <Row style={{margin: '15px 0 0 0'}}>
-              <Col span={5}>
+              <Col span={7}>
                 {get(prev, 'id', 0)
                   ? <Button type="default" className={style.articleBtn} htmlType="button" onClick={() => this.pageChange(prev.id)}>
-                    <Icon type="left"/> <span className={style.btnTitle}> {this.subString(prev.title,6,true)}</span>
+                    <Icon type="left"/> <span className={style.btnTitle}> {this.subString(prev.title,15,true)}</span>
                   </Button>
                   : ''
                 }
               </Col>
-              <Col span={5} offset={14} style={{textAlign: 'right'}}>
+              <Col span={7} offset={10} style={{textAlign: 'right'}}>
                 {get(next, 'id', 0)
                   ? <Button type="default" className={style.articleBtn} htmlType="button" onClick={() => this.pageChange(next.id)}>
-                    <span className={style.btnTitle}>{this.subString(next.title,10,true)} </span> <Icon type="right"/>
+                    <span className={style.btnTitle}>{this.subString(next.title,15,true)} </span> <Icon type="right"/>
                   </Button>
                   : ''
                 }
