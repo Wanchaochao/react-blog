@@ -1,5 +1,5 @@
 ## react-blog
-个人博客 
+PERSONAL BLOG
 
 [![stable](https://img.shields.io/badge/react--blog-active-brightgreen.svg)](https://github.com/wanchaochao/react-blog)
 [![stable](https://img.shields.io/badge/api-golang-blue.svg)](https://github.com/wanchaochao/blog_api)
