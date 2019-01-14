@@ -38,6 +38,20 @@ umi dev
 npm run build
 ```
 
+## CONFIG OPTIONS
+```bash
+# .umirc.js
+
+proxy #代理配置
+
+plugins #相关插件配置
+
+routes #路由配置
+
+theme # 主题配置
+
+```
+
 <p align="center">
 	<a href="https:www.littlebug.vip">
 		<img src="http://littlebug.oss-cn-beijing.aliyuncs.com/www.littlebug.vip/favicon.ico" width="75">
