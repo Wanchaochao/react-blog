@@ -1,6 +1,13 @@
 ## react-blog
-个人博客
-online project 
+个人博客 
+
+[![stable](https://img.shields.io/badge/react--blog-active-brightgreen.svg)](https://github.com/wanchaochao/react-blog)
+[![stable](https://img.shields.io/badge/api-golang-blue.svg)](https://github.com/wanchaochao/blog_api)
+[![stable](https://img.shields.io/badge/umi-%5E2.3.5-blue.svg)](https://umijs.org/)
+[![stable](https://img.shields.io/badge/ant--design-%5E3.0.0-blue.svg)](https://ant.design/index-cn)
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/wanchaochao)
+
+online project: 
 <a href="www.littlebug.vip" target="_blank">Little Bug</a>
 
 ## INSTALL(安装)
