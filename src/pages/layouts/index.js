@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-target-blank */
 import { Component } from 'react';
-import { Card, List, Row, Col, Calendar, Layout } from 'antd';
+import { Card, List, Row, Col, Calendar, Layout, BackTop } from 'antd';
 import Link from 'umi/link';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
@@ -132,6 +132,14 @@ class BasicLayout extends Component {
             </Col>
           </Row>
         </Layout>
+        <div>
+          <BackTop>
+            <div className={style.antBackTopInner}>UP</div>
+          </BackTop>
+          Scroll down to see the bottom-right
+          <strong style={{ color: '#1088e9' }}> blue </strong>
+          button.
+        </div>
       </div>
     );
   }
