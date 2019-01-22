@@ -37,7 +37,6 @@ class BasicLayout extends Component {
     friendsBlogs: [
       { name: 'fifsky', link: 'https://fifsky.com/' },
       { name: 'JinXin', link: 'https://laravel.sh-jinger.com' },
-      { name: 'LiYu', link: 'http://liyu.91yiso.com' },
     ],
     noopener: 'noopener',
   };
