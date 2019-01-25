@@ -1,6 +1,7 @@
 ## react-blog
 PERSONAL BLOG
 
+[![stable](http://littlebug.oss-cn-beijing.aliyuncs.com/www.littlebug.vip/build-passing.svg)](https://github.com/wanchaochao/react-blog)
 [![stable](https://img.shields.io/badge/react--blog-active-brightgreen.svg)](https://github.com/wanchaochao/react-blog)
 [![stable](https://img.shields.io/badge/api-golang-blue.svg)](https://github.com/wanchaochao/blog_api)
 [![stable](https://img.shields.io/badge/umi-%5E2.3.5-blue.svg)](https://umijs.org/)
