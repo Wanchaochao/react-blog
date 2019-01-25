@@ -1,0 +1,14 @@
+language: node_js
+sudo: false
+node_js:
+  - 8.11.1
+
+before_install:
+
+- npm install
+
+script:
+- npm run start
+
+after_success:
+- bash <(curl -s https://codecov.io/bash)
