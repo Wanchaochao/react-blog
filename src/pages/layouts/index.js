@@ -135,9 +135,6 @@ class BasicLayout extends Component {
           <BackTop>
             <div className={style.antBackTopInner}>UP</div>
           </BackTop>
-          Scroll down to see the bottom-right
-          <strong style={{ color: '#1088e9' }}> blue </strong>
-          button.
         </div>
       </div>
     );
