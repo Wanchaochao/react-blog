@@ -3,8 +3,6 @@ import { Row, Col, Icon, Button } from 'antd';
 import Link from 'umi/link';
 import style from './style.less';
 import {connect} from 'dva'
-import { sync } from '../../util';
-
 
 @connect(({ home, loading }) => ({
   home,

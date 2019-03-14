@@ -17,7 +17,7 @@ export default {
     routes: [
       {
         path: '/',
-        component: 'home'
+        component: 'categories'
       },
       {
         path: '/article',
@@ -25,7 +25,7 @@ export default {
       },
       {
         path: '/categories',
-        component: 'categories'
+        component: 'home'
       },
       {
         path: '/category',

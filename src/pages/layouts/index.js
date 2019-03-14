@@ -50,12 +50,9 @@ class BasicLayout extends Component {
   }
 
   static onPanelChange() {
-    return console.log(1);
+    // return console.log(1)
   }
 
-  onSelect() {
-
-  }
 
   render() {
     moment.locale('zh-cn');
@@ -94,14 +91,14 @@ class BasicLayout extends Component {
                     title={<Row>
                       <Link to="/">
                         <Col span={12} className={style.cardRightBorder}>
-                          <h5>日志</h5>
+                          <h5>分类</h5>
                           <p>8</p>
                         </Col>
                       </Link>
                       <Col span={12}>
                         <Link to="/categories">
-                          <h5>分类</h5>
-                          <p>10</p>
+                          <h5>日志</h5>
+                          <p>25</p>
                         </Link>
                       </Col>
                     </Row>}
