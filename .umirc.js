@@ -41,11 +41,7 @@ export default {
     '/api': {
       target: 'http://api.littlebug.vip',
       changeOrigin: true
-    },
-    // '/api/': {
-    //   target: 'https://easymock.verystar.cn/mock/5c248a445595980019189316/example',
-    //   changeOrigin: true
-    // },
+    }
   },
   publicPath: "http://littlebug.oss-cn-beijing.aliyuncs.com/react.blog.vip/",
   theme: {
