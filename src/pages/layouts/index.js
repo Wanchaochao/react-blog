@@ -65,12 +65,13 @@ class BasicLayout extends Component {
         <Layout style={{ overflow: 'hidden' }}>
           <div className={style.topMargin}/>
           <Row type="flex" justify="space-around" gutter={{ xs: 8, sm: 16, md: 24 }}>
-            <Col span={3} offset={4} className="baseMargin">
+            <Col span={3} offset={2} className="baseMargin">
               <Row>
                 <Col span={24}>
                   <Card
                     title={<div>
                       <a href="https://github.com/wanchaochao" target="_blank">Little Bug</a>
+                      <br/>
                       <p className={style.logoText}>努力让编程成为一门艺术</p>
                     </div>}
                     className={style.blogTitleCard}
@@ -118,10 +119,10 @@ class BasicLayout extends Component {
               </Row>
 
             </Col>
-            <Col span={10}>
+            <Col span={12}>
               {this.props.children}
             </Col>
-            <Col span={7}>
+            <Col span={6}>
               <div style={{ width: 300, border: '1px solid #d9d9d9', borderRadius: 4, backgroundColor: '#fff' }}>
                 <Calendar fullscreen={false} onPanelChange={BasicLayout.onPanelChange}/>
               </div>
