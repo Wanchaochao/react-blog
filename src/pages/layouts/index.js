@@ -72,7 +72,9 @@ class BasicLayout extends Component {
                     title={<div>
                       <a href="https://github.com/wanchaochao" target="_blank">Little Bug</a>
                       <br/>
-                      <p className={style.logoText}>努力让编程成为一门艺术</p>
+                      <p className={style.logoText}>努力让编程成为</p>
+                      <br/>
+                      <p className={style.logoText}>一门艺术</p>
                     </div>}
                     className={style.blogTitleCard}
                   >
