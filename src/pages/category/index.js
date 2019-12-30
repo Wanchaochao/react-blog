@@ -37,9 +37,7 @@ class Index extends Component {
 
 
   render() {
-
     const { list } = this.props.category;
-    console.log(list);
     return (
       <div>
         <Row className="container">

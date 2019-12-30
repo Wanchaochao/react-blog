@@ -11,39 +11,45 @@ export default {
       },
     }],
   ],
-  routes: [{
-    path: '/',
-    component: 'layouts',
-    routes: [
-      {
-        path: '/',
-        component: 'categories'
-      },
-      {
-        path: '/article',
-        component: 'article'
-      },
-      {
-        path: '/categories',
-        component: 'home'
-      },
-      {
-        path: '/category',
-        component: 'category'
-      },
-      {
-        path: '/about',
-        component: 'about'
-      },
-    ]
-  }],
+  routes: [
+    {
+      path: '/',
+      component: 'layouts',
+      routes: [
+        {
+          path: '/',
+          component: 'categories',
+        },
+        {
+          path: '/article',
+          component: 'article',
+        },
+        {
+          path: '/categories',
+          component: 'home',
+        },
+        {
+          path: '/category',
+          component: 'category',
+        },
+        {
+          path: '/about',
+          component: 'about',
+        },
+        {
+          path: '/cxb',
+          component: 'cxb',
+        },
+      ],
+    },
+  ],
   proxy: {
     '/api': {
       target: 'http://api.littlebug.vip',
-      changeOrigin: true
-    }
+      changeOrigin: true,
+    },
   },
-  publicPath: "http://littlebug.oss-cn-beijing.aliyuncs.com/react.blog.vip/",
+  publicPath: 'http://littlebug.oss-cn-beijing.aliyuncs.com/react.blog.vip/',
   theme: {
     // 'primary-color': '#1DA57A',
     // 'link-color': '#1DA57A',
