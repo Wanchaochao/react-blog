@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import style from './style.less';
+import style from './style.less'
+import { Row} from 'antd';
 
 class Cxb extends Component {
   componentDidMount() {
@@ -9,11 +10,14 @@ class Cxb extends Component {
   render() {
     return (
       <div>
-        <h1 className={style.cxb}>
-          敲(li)麻🏆毛杂🐔小传染🐦斌
-          <br/>
-          he ~ tui !
-        </h1>
+        <Row className="container">
+
+          <h1 className={style.cxb}>
+            敲(li)麻🏆毛杂🐔小传染🐦斌
+            <br/>
+            he ~ tui !
+          </h1>
+        </Row>
       </div>
     )
   }
