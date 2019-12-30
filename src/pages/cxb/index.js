@@ -15,6 +15,7 @@ class Cxb extends Component {
           <div className={style.tui}>
             <img src={tui} alt=""/>
           </div>
+
           <h1 className={style.cxb}>
             敲(li)麻🏆毛杂🐔小传染🐦斌
           </h1>
